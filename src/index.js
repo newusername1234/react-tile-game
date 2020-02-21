@@ -30,7 +30,7 @@ class Board extends React.Component {
         // console.log('state coords: ' + this.props.xCoords + ', ' + this.props.yCoords);
         let myStyle;
         const myArr = [];   
-        for (y; y < 11; y++) {
+        for (y; y < 13; y++) {
             switch(this.props.squares[x][y]) {
                 case '':
                     myStyle = {backgroundColor: 'lightblue', border: '3px solid cornflowerblue'};
@@ -43,13 +43,13 @@ class Board extends React.Component {
                         myStyle = {backgroundColor: 'yellow', border: '3px solid orange'} :
                         myStyle = {backgroundColor: 'rgb(224, 68, 68)', border: '3px solid rgb(151, 40, 40)'};
                     break;
+                case 'Z':
+                    myStyle = {backgroundColor: 'orange', border: '3px solid darkorange'};
+                    break;
                 default:
                     break;
             }
-            // this.props.squares[x][y] ? 
-            //     myStyle = {backgroundColor: 'black'} :
-            //     myStyle = {backgroundColor: 'white'};
-                myArr.push(<Square key={y} style={myStyle}/>);
+            myArr.push(<Square key={y} style={myStyle}/>);
         }
         return myArr;
     }
@@ -83,6 +83,12 @@ class Board extends React.Component {
                 <div className="board-row">
                     {this.renderRow(7, 0)}
                 </div>
+                <div className="board-row">
+                    {this.renderRow(8, 0)}
+                </div>
+                <div className="board-row">
+                    {this.renderRow(9, 0)}
+                </div>
                 {winCheck && <h1>Winrar!</h1>}
                 {/* {loseCheck && <h1>You suck at puzzles</h1>} */}
             </div>
@@ -95,16 +101,18 @@ class Game extends React.Component {
         super(props);
         this.state = {
             squares: [
-                ['', 'X', 'X', '', '', 'O', '', '', '', '', ''],
-                ['', '', '', '', '', 'X', '', '', '', 'X', ''],
-                ['X', '', '', '', '', '', '', 'X', '', '', ''],
-                ['', '', 'X', '', '', '', '', '', '', '', ''],
-                ['', '', 'X', '', '', '', 'X', '', '', '', ''],
-                ['X', '', '', '', 'X', '', '', '', '', '', 'X'],
-                ['', '', '', '', '', '', '', '', 'X', '', ''],
-                ['', '', '', '', '', '', 'X', '', '', '', '']
+                ['X', 'X', 'X', 'X', 'X', 'X', 'O', 'X', 'X', 'X', 'X', 'X'],
+                ['X', '', 'X', 'X', '', '', '', '', '', '', '', '', 'X'],
+                ['X', '', '', '', '', '', 'X', '', '', '', 'X', '', 'X'],
+                ['X', 'X', '', '', '', '', '', '', 'X', '', '', '', 'X'],
+                ['X', '', '', 'X', '', '', '', '', '', '', '', '', 'X'],
+                ['X', '', '', 'X', '', '', '', 'X', '', '', '', '', 'X'],
+                ['X', 'X', '', '', '', 'X', '', '', '', '', '', 'X', 'X'],
+                ['X', '', '', '', '', '', '', '', '', 'X', '', '', 'X'],
+                ['X', '', '', '', '', '', '', 'X', '', '', '', '', 'X'],
+                ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
             ],
-            xCoords: 5,
+            xCoords: 6,
             yCoords: 0
         };
     }
@@ -116,13 +124,13 @@ class Game extends React.Component {
 
         switch(event.target.value) {
             case 'left':
-                if (x > 0) {x -= 1};
+                if (x > 1) {x -= 1};
                 break;
             case 'right':
                 if (x < squares[0].length - 1) {x += 1};
                 break;
             case 'up':
-                if (y > 0) {y -= 1};
+                if (y > 1) {y -= 1};
                 break;
             case 'down':
                 if (y < squares.length - 1) {y += 1};
@@ -165,6 +173,7 @@ function calculateWinner(squares) {
             }
         }
     }
+    squares[4][6] = 'Z';
     return true;
 }
 
