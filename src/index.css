@@ -33,17 +33,9 @@ ol, ul {
     width: 34px;
 }
 
-.square:focus {
-    outline: none;
-}
-
-.kbd-navigation .square:focus {
-    background: #ddd;
-}
-
 .game {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
 }
 
 .game-info {
