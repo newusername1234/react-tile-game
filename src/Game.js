@@ -58,7 +58,7 @@ export default class Game extends React.Component {
         return;
     }
 
-    handleClick = (event) => {
+    move = (event) => {
         const history = this.state.history;
         const current = history[history.length - 1];
         // let squares = [...current.squares];
@@ -114,7 +114,7 @@ export default class Game extends React.Component {
                         xCoord={current.xCoord} 
                         yCoord={current.yCoord}
                     />
-                    <DPad onClick={this.handleClick}/>
+                    <DPad onClick={this.move}/>
                     <AB onClick={this.goBack} />
                     {this.state.catPic && <img height='500px' width='500px' src={this.state.catPic} />}
                 </div>
