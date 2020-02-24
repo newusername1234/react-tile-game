@@ -108,16 +108,17 @@ export default class Game extends React.Component {
         return (
             <div className="game">
                 <div className="game-board">
+                    <DPad onClick={this.move}/>
                     <Screen
+                        className="screen"
                         winCheck={this.winCheck}
                         squares={current.squares} 
                         xCoord={current.xCoord} 
                         yCoord={current.yCoord}
                     />
-                    <DPad onClick={this.move}/>
                     <AB onClick={this.goBack} />
-                    {this.state.catPic && <img height='500px' width='500px' src={this.state.catPic} />}
                 </div>
+                {this.state.catPic && <img height='500px' width='500px' src={this.state.catPic} />}
             </div>
         );
     }
