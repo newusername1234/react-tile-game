@@ -11,6 +11,7 @@ function Square({ style }) {
         />
     );
 }
+
 // add working reset button or add step back w/ redux
 function DPad({onClick}) {
     return (
@@ -42,9 +43,6 @@ class Board extends React.Component {
                     x === this.props.yCoords && y === this.props.xCoords ? 
                         myStyle = {backgroundColor: 'yellow', border: '3px solid orange'} :
                         myStyle = {backgroundColor: 'rgb(224, 68, 68)', border: '3px solid rgb(151, 40, 40)'};
-                    break;
-                case 'Z':
-                    myStyle = {backgroundColor: 'orange', border: '3px solid darkorange'};
                     break;
                 default:
                     break;
@@ -101,7 +99,7 @@ class Game extends React.Component {
         super(props);
         this.state = {
             squares: [
-                ['X', 'X', 'X', 'X', 'X', 'X', 'O', 'X', 'X', 'X', 'X', 'X'],
+                ['X', 'X', 'X', 'X', 'X', 'X', 'O', 'X', 'X', 'X', 'X', 'X', 'X'],
                 ['X', '', 'X', 'X', '', '', '', '', '', '', '', '', 'X'],
                 ['X', '', '', '', '', '', 'X', '', '', '', 'X', '', 'X'],
                 ['X', 'X', '', '', '', '', '', '', 'X', '', '', '', 'X'],
@@ -173,7 +171,6 @@ function calculateWinner(squares) {
             }
         }
     }
-    squares[4][6] = 'Z';
     return true;
 }
 
