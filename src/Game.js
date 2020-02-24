@@ -3,6 +3,10 @@ import Screen from './Screen';
 import DPad from './DPad';
 import AB from './AB';
 
+import axios from 'axios';
+const ENDPOINT = 'https://api.thecatapi.com/v1/images/search';
+
+
 export default class Game extends React.Component {
     constructor(props) {
         super(props);
@@ -22,14 +26,31 @@ export default class Game extends React.Component {
                         ['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
                     ],
                     xCoord: 6,
-                    yCoord: 0
+                    yCoord: 0,
                 },
-            ]
+            ],
+            catPic: ''
         };
     }
 
+    winCheck = (squares) => {
+        for (let array of squares) {
+            for (let item of array) {
+                if (item === '') {
+                    return;
+                }
+            }
+        }
+        axios.get(ENDPOINT)
+            .then(r => {
+                this.setState({
+                    catPic: r.data[0].url
+                });
+            })
+    }
+
     goBack = () => {
-        if (this.state.history.length > 1) {
+        if (this.state.history.length > 1 && !this.state.catPic) {
             this.setState({
                 history: this.state.history.slice(0, this.state.history.length - 1)
             });
@@ -38,11 +59,10 @@ export default class Game extends React.Component {
     }
 
     handleClick = (event) => {
-        // let squares = [[...this.state.squares[0]], [...this.state.squares[1]], [...this.state.squares[2]], [...this.state.squares[3]], [...this.state.squares[4]], [...this.state.squares[5]], [...this.state.squares[6]], [...this.state.squares[7]], [...this.state.squares[8]], [...this.state.squares[9]]];
         const history = this.state.history;
         const current = history[history.length - 1];
-        let squares = current.squares.map(arr => arr.slice());
-        console.log(squares);
+        // let squares = [...current.squares];
+        let squares = current.squares.map(arr => [...arr]);
         let x = current.xCoord;
         let y = current.yCoord;
 
@@ -84,14 +104,19 @@ export default class Game extends React.Component {
     render() {
         const history = this.state.history;
         const current = history[history.length - 1];
-        console.table(history);
-        console.table(current);
+        console.table(this.state);
         return (
             <div className="game">
                 <div className="game-board">
-                    <Screen squares={current.squares} xCoord={current.xCoord} yCoord={current.yCoord}/>
+                    <Screen
+                        winCheck={this.winCheck}
+                        squares={current.squares} 
+                        xCoord={current.xCoord} 
+                        yCoord={current.yCoord}
+                    />
                     <DPad onClick={this.handleClick}/>
                     <AB onClick={this.goBack} />
+                    {this.state.catPic && <img height='500px' width='500px' src={this.state.catPic} />}
                 </div>
             </div>
         );

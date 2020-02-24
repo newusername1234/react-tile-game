@@ -3,8 +3,6 @@ import Square from './Square';
 
 export default class Screen extends React.Component {
     renderRow(x, y) {
-        // console.log('board coords: ' + x + ', ' + y);
-        // console.log('state coords: ' + this.props.xCoords + ', ' + this.props.yCoords);
         let myStyle;
         const myArr = [];   
         for (y; y < 13; y++) {
@@ -29,8 +27,7 @@ export default class Screen extends React.Component {
     }
 
     render() {
-        const winCheck = calculateWinner(this.props.squares);
-        // const loseCheck = calculateLoser(this.props.squares, this.props.xCoords, this.props.yCoords);
+        this.props.winCheck(this.props.squares);
         return (
             <div>
                 <div className="board-row">
@@ -63,20 +60,7 @@ export default class Screen extends React.Component {
                 <div className="board-row">
                     {this.renderRow(9, 0)}
                 </div>
-                {winCheck && <h1>Winrar!</h1>}
-                {/* {loseCheck && <h1>You suck at puzzles</h1>} */}
             </div>
         );
     }
-}
-
-function calculateWinner(squares) {
-    for (let array of squares) {
-        for (let item of array) {
-            if (item === '') {
-                return false;
-            }
-        }
-    }
-    return true;
 }
