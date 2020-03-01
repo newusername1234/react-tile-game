@@ -1,7 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: purple;
+    background-color: lightgrey;
 }
 
 ol, ul {
@@ -51,6 +51,23 @@ ol, ul {
     padding-right: 20px;
 }
 
+.dpad > * {
+    color: white;
+    background-color: black;
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+}
+
 .ab {
     padding-left: 20px;
+}
+
+.ab > * {
+    color: white;
+    background-color: purple;
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    border-radius: 50px;
 }
