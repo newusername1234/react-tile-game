@@ -3,10 +3,6 @@ import Screen from './Screen';
 import DPad from './DPad';
 import AB from './AB';
 
-import axios from 'axios';
-const ENDPOINT = 'https://api.thecatapi.com/v1/images/search';
-
-
 export default class Game extends React.Component {
     constructor(props) {
         super(props);
