@@ -29,7 +29,7 @@ export default class Game extends React.Component {
                     yCoord: 0,
                 },
             ],
-            catPic: ''
+            hasWon: false
         };
     }
 
@@ -41,16 +41,14 @@ export default class Game extends React.Component {
                 }
             }
         }
-        axios.get(ENDPOINT)
-            .then(r => {
-                this.setState({
-                    catPic: r.data[0].url
-                });
-            })
+        this.setState({
+            hasWon: true
+        });
+    })
     }
 
     goBack = () => {
-        if (this.state.history.length > 1 && !this.state.catPic) {
+        if (this.state.history.length > 1 && !this.state.hasWon) {
             this.setState({
                 history: this.state.history.slice(0, this.state.history.length - 1)
             });
@@ -118,7 +116,7 @@ export default class Game extends React.Component {
                     />
                     <AB onClick={this.goBack} />
                 </div>
-                {this.state.catPic && <img height='500px' width='500px' src={this.state.catPic} />}
+                {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white'}}>Winner</div>}
             </div>
         );
     }
