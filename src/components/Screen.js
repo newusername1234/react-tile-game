@@ -27,9 +27,8 @@ export default class Screen extends React.Component {
     }
 
     render() {
-        this.props.winCheck(this.props.squares);
         return (
-            <div>
+            <div className="screen">
                 <div className="board-row">
                     {this.renderRow(0, 0)}
                 </div>

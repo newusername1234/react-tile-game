@@ -2,6 +2,7 @@ import React from 'react';
 import Screen from './Screen';
 import DPad from './DPad';
 import AB from './AB';
+// <
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -40,7 +41,6 @@ export default class Game extends React.Component {
         this.setState({
             hasWon: true
         });
-    })
     }
 
     goBack = () => {
@@ -55,7 +55,6 @@ export default class Game extends React.Component {
     move = (event) => {
         const history = this.state.history;
         const current = history[history.length - 1];
-        // let squares = [...current.squares];
         let squares = current.squares.map(arr => [...arr]);
         let x = current.xCoord;
         let y = current.yCoord;
@@ -93,6 +92,7 @@ export default class Game extends React.Component {
                     }    
                 ]
         }, () => console.table(this.state));
+        this.winCheck(squares);
     }
     
     render() {
@@ -105,14 +105,13 @@ export default class Game extends React.Component {
                     <DPad onClick={this.move}/>
                     <Screen
                         className="screen"
-                        winCheck={this.winCheck}
                         squares={current.squares} 
                         xCoord={current.xCoord} 
                         yCoord={current.yCoord}
                     />
                     <AB onClick={this.goBack} />
                 </div>
-                {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white'}}>Winner</div>}
+                {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white', padding: 20, margin: 10}}>Winner</div>}
             </div>
         );
     }
