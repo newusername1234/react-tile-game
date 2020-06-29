@@ -53,13 +53,14 @@ export default class Game extends React.Component {
     }
 
     move = (event) => {
+        console.log(event.target.id);
         const history = this.state.history;
         const current = history[history.length - 1];
         let squares = current.squares.map(arr => [...arr]);
         let x = current.xCoord;
         let y = current.yCoord;
 
-        switch(event.target.value) {
+        switch(event.target.id) {
             case 'left':
                 if (x > 1) {x -= 1};
                 break;

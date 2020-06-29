@@ -5,6 +5,19 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: indigo;
+}
+
+#up:hover,
+#down:hover,
+#left:hover,
+#right:hover,
+.ab>*:hover {
+    cursor: pointer;
+}
+
+#center:hover {
+    cursor: default;
 }
 
 ol, ul {
@@ -60,7 +73,7 @@ ol, ul {
     flex-direction: column;
 }
 
-.dpad {
+#dpad {
     padding-right: 20px;
     width: 150px;
     height: 150px;
@@ -70,9 +83,9 @@ ol, ul {
     align-items: center;
 }
 
-.top,
-.mid,
-.bottom {
+#top,
+#mid,
+#bottom {
     display: flex;
 }
 
@@ -82,7 +95,23 @@ ol, ul {
     width: 50px;
 }
 
-.center {
+#center {
+    height: 50px;
+    width: 50px;
+    background-color: lightgrey;
+    color: grey;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 55px;
+    font-weight: bolder;
+    border-bottom: 5px solid lightgrey;
+}
+
+#left,
+#right,
+#up,
+#down {
+    font-weight: bolder;
     height: 50px;
     width: 50px;
     background-color: lightgrey;
@@ -92,28 +121,48 @@ ol, ul {
     line-height: 50px;
 }
 
-.left,
-.right,
-.up,
-.down {
-    color: grey;
-    font-weight: bolder;
-    background-color: lightgrey;
-    border-radius: 5px;
-    height: 50px;
-    width: 50px;
-    /* margin: 5px; */
+#up {
+    border-radius: 5px 5px 0px 0px;
+    border-top: 5px outset darkgrey;
+    border-right: 5px outset darkgrey;
+}
+
+#down {
+    border-radius: 0px 0px 5px 5px;
+    border-right: 5px outset darkgrey;
+}
+
+#left {
+    border-radius: 5px 0px 0px 5px;
+    border-top: 5px outset darkgrey;
+}
+
+#right {
+    border-radius: 0px 5px 5px 0px;
+    border-top: 5px outset darkgrey;
+    border-right: 5px outset darkgrey;
 }
 
 .ab {
     padding-left: 20px;
+    height: 150px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .ab > * {
-    color: white;
-    background-color: purple;
-    height: 50px;
-    width: 50px;
+    border: 5px outset darkgrey;
+    color: grey;
+    background-color: lightgrey;
+    height: 75px;
+    width: 75px;
     margin: 5px;
     border-radius: 50px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.a {
+    margin-bottom: 10px;
+    align-self: flex-start;
 }
