@@ -101,17 +101,17 @@ export default class Game extends React.Component {
         const current = history[history.length - 1];
         console.table(this.state);
         return (
-            <div className="game">
-                <div className="game-board">
-                    <DPad onClick={this.move}/>
+            <div id="gameContainer">
+                <DPad onClick={this.move}/>
+                <div id="screenBackground">
                     <Screen
                         className="screen"
                         squares={current.squares} 
                         xCoord={current.xCoord} 
                         yCoord={current.yCoord}
                     />
-                    <AB onClick={this.goBack} />
                 </div>
+                <AB onClick={this.goBack} />
                 {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white', padding: 20, margin: 10}}>Winner</div>}
             </div>
         );

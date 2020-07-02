@@ -1,12 +1,22 @@
-body, html {
+body {
     height: 100%;
     margin: 20px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: indigo;
+    background-image: linear-gradient(indigo, rgb(49, 0, 83));
 }
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
 
 #up:hover,
 #down:hover,
@@ -55,9 +65,24 @@ ol, ul {
     width: 34px;
 }
 
-.game {
+#gameContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#screenBackground {
     background-color: rgb(63, 60, 60); 
+    border-bottom: 10px solid rgb(46, 46, 46);
+    border-left: 10px solid rgb(46, 46, 46);
     border-radius: 120px;
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-board {
@@ -69,12 +94,12 @@ ol, ul {
 }
 
 .screen {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 #dpad {
-    padding-right: 20px;
+    /* padding-right: 20px; */
     width: 150px;
     height: 150px;
     display: flex;
@@ -104,7 +129,9 @@ ol, ul {
     vertical-align: middle;
     line-height: 55px;
     font-weight: bolder;
+    font-size: 50px;
     border-bottom: 5px solid lightgrey;
+    /* color: linear-gradient(darkgrey, lightgrey); */
 }
 
 #left,
@@ -125,22 +152,26 @@ ol, ul {
     border-radius: 5px 5px 0px 0px;
     border-top: 5px outset darkgrey;
     border-right: 5px outset darkgrey;
+    font-size: 30px;
 }
 
 #down {
     border-radius: 0px 0px 5px 5px;
     border-right: 5px outset darkgrey;
+    font-size: 30px;
 }
 
 #left {
     border-radius: 5px 0px 0px 5px;
     border-top: 5px outset darkgrey;
+    font-size: 20px;
 }
 
 #right {
     border-radius: 0px 5px 5px 0px;
     border-top: 5px outset darkgrey;
     border-right: 5px outset darkgrey;
+    font-size: 20px;
 }
 
 .ab {
