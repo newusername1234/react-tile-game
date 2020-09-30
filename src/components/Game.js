@@ -2,7 +2,6 @@ import React from 'react';
 import Screen from './Screen';
 import DPad from './DPad';
 import AB from './AB';
-// <
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -26,6 +25,7 @@ export default class Game extends React.Component {
                     yCoord: 0,
                 },
             ],
+            turns: 0,
             hasWon: false
         };
     }
@@ -46,6 +46,7 @@ export default class Game extends React.Component {
     goBack = () => {
         if (this.state.history.length > 1 && !this.state.hasWon) {
             this.setState({
+                turns: this.state.turns + 1,
                 history: this.state.history.slice(0, this.state.history.length - 1)
             });
         }
@@ -84,14 +85,15 @@ export default class Game extends React.Component {
         squares[y][x] = 'O';
 
         this.setState({
-                history: [
-                    ...history,
-                    {
-                        squares,
-                        xCoord: x,
-                        yCoord: y
-                    }    
-                ]
+            turns: this.state.turns + 1,
+            history: [
+                ...history,
+                {
+                    squares,
+                    xCoord: x,
+                    yCoord: y
+                }    
+            ]
         }, () => console.table(this.state));
         this.winCheck(squares);
     }
@@ -99,20 +101,24 @@ export default class Game extends React.Component {
     render() {
         const history = this.state.history;
         const current = history[history.length - 1];
+        const numTurns = this.state.turns
         console.table(this.state);
         return (
             <div id="gameContainer">
                 <DPad onClick={this.move}/>
-                <div id="screenBackground">
-                    <Screen
-                        className="screen"
-                        squares={current.squares} 
-                        xCoord={current.xCoord} 
-                        yCoord={current.yCoord}
-                    />
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <div style={{alignSelf: 'center', backgroundColor: 'white', padding: 10, margin: 30, borderRadius: 5}}>{numTurns} {numTurns != 1 ? 'turns' : 'turn'}</div>
+                    <div id="screenBackground">
+                        <Screen
+                            className="screen"
+                            squares={current.squares} 
+                            xCoord={current.xCoord} 
+                            yCoord={current.yCoord}
+                        />
+                    </div>
+                    {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white', padding: 20, margin: 10, textAlign: 'center'}}>Nice job!</div>}
                 </div>
                 <AB onClick={this.goBack} />
-                {this.state.hasWon && <div style={{border: '1px solid black', backgroundColor: 'white', padding: 20, margin: 10}}>Winner</div>}
             </div>
         );
     }
